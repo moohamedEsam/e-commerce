@@ -1,0 +1,48 @@
+[versions]
+java = "25"
+spring-boot = "3.5.6"
+spring-dep-mgmt = "1.1.7"
+assertj = "3.27.6"
+#sentry = "8.16.0"
+spring-cloud = "2025.0.0"
+lombok = "1.18.42"
+ulid = "5.2.3"
+reactor = "3.7.11"
+junit-jupiter = "5.8.1"
+junit-platform = "1.13.4"
+mockito = "5.20.0"
+
+[libraries]
+spring-boot-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
+spring-boot-data-r2dbc = { module = "org.springframework.boot:spring-boot-starter-data-r2dbc" }
+spring-boot-data-redis-reactive = { module = "org.springframework.boot:spring-boot-starter-data-redis-reactive" }
+#spring-boot-security = { module = "org.springframework.boot:spring-boot-starter-security" }
+spring-boot-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
+spring-boot-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux" }
+sentry-spring = { module = "io.sentry:sentry-spring-boot-starter-jakarta" }
+flyway-core = { module = "org.flywaydb:flyway-core" }
+flyway-postgres = { module = "org.flywaydb:flyway-database-postgresql" }
+spring-jdbc = { module = "org.springframework:spring-jdbc" }
+#spring-cloud-resilience4j = { module = "org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j" }
+#spring-kafka = { module = "org.springframework.kafka:spring-kafka" }
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+spring-boot-devtools = { module = "org.springframework.boot:spring-boot-devtools" }
+postgres = { module = "org.postgresql:postgresql" }
+r2dbc-postgres = { module = "org.postgresql:r2dbc-postgresql" }
+spring-boot-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+reactor = { module = "io.projectreactor:reactor-core", version.ref = "reactor" }
+reactor-test = { module = "io.projectreactor:reactor-test", version.ref = "reactor" }
+#spring-kafka-test = { module = "org.springframework.kafka:spring-kafka-test" }
+#spring-security-test = { module = "org.springframework.security:spring-security-test" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform" }
+assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+ulid = { module = "com.github.f4b6a3:ulid-creator", version.ref = "ulid" }
+junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit-jupiter" }
+mockito = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+spring-dep-mgmt = { id = "io.spring.dependency-management", version.ref = "spring-dep-mgmt" }
+
+[bundles]
+spring-test = ["spring-boot-test", "reactor-test", "assertj-core"]
+domain-test = ["junit-jupiter", "mockito", "assertj-core", "reactor-test"]
