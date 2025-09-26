@@ -15,12 +15,14 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public Mono<Product> findById(String id) {
-        return postgresProductRepository.findById(id);
+        return postgresProductRepository.findById(id)
+                .map(ProductEntity::toProduct);
     }
 
     @Override
     public Mono<Product> save(Product product) {
-        return postgresProductRepository.save(product);
+        return postgresProductRepository.save(ProductEntity.fromProduct(product))
+                .map(ProductEntity::toProduct);
     }
 
     @Override

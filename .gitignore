@@ -38,3 +38,4 @@ out/
 
 ### senstive files ###
 product/application/src/main/resources/application-local.properties
+product/application/src/main/resources/application-test.properties

@@ -20,6 +20,7 @@ repositories {
 
 dependencies {
     implementation(project(":product:domain"))
+    implementation(project(":shared"))
     implementation(libs.spring.boot.actuator)
     implementation(libs.spring.boot.data.r2dbc)
     implementation(libs.spring.boot.data.redis.reactive)
@@ -28,13 +29,14 @@ dependencies {
     implementation(libs.flyway.core)
     implementation(libs.flyway.postgres)
     implementation(libs.spring.jdbc)
+    implementation(libs.ulid)
     compileOnly(libs.lombok)
     developmentOnly(libs.spring.boot.devtools)
     runtimeOnly(libs.postgres)
     runtimeOnly(libs.r2dbc.postgres)
     annotationProcessor(libs.lombok)
     testImplementation(libs.bundles.spring.test)
-    testRuntimeOnly(libs.junit.platform.launcher)
+    testRuntimeOnly(libs.spring.junit.platform.launcher)
 }
 
 dependencyManagement {
