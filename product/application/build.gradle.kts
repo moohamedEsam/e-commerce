@@ -19,6 +19,7 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":product:domain"))
     implementation(libs.spring.boot.actuator)
     implementation(libs.spring.boot.data.r2dbc)
     implementation(libs.spring.boot.data.redis.reactive)
@@ -46,3 +47,8 @@ dependencyManagement {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
+tasks.test {
+    jvmArgs("--enable-native-access=ALL-UNNAMED")
+}
+

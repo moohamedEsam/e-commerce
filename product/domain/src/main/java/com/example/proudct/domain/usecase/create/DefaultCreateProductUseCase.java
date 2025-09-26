@@ -1,9 +1,11 @@
 package com.example.proudct.domain.usecase.create;
 
+import com.example.proudct.domain.annotation.UseCase;
 import com.example.proudct.domain.model.Product;
 import com.example.proudct.domain.repository.ProductRepository;
 import reactor.core.publisher.Mono;
 
+@UseCase
 public class DefaultCreateProductUseCase implements CreateProductUseCase {
     private final ProductRepository productRepository;
 
