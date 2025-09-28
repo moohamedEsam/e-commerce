@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.r2dbc.DataR2dbcTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.math.BigDecimal;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
@@ -21,11 +23,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class CreateProductUseCaseDbTestCase {
     @Autowired
     PostgresProductRepository postgresProductRepository;
-
     ProductRepository productRepository;
 
     CreateProductUseCase createProductUseCase;
-    Product product = Product.empty();
+    Product product = new Product("test", "test", BigDecimal.ONE, null, null);
 
     @BeforeEach
     void setup() {
@@ -38,11 +39,16 @@ class CreateProductUseCaseDbTestCase {
     void createProductShouldWork() {
         var result = createProductUseCase.execute(product).block();
         assertThat(result).isNotNull();
-        System.out.println(result);
+        assertThat(result.getId()).isNotNull();
+        assertThat(result.getName()).isEqualTo(product.getName());
+        assertThat(result.getDescription()).isEqualTo(product.getDescription());
+        assertThat(result.getPrice()).isEqualTo(product.getPrice());
+        assertThat(result.getCategoryId()).isNull();
+        product.setId(result.getId());
     }
 
     @AfterEach
     void tearDown() {
-        postgresProductRepository.deleteById(product.getId());
+        postgresProductRepository.deleteById(product.getId()).block();
     }
 }

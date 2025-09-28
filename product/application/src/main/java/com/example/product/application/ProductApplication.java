@@ -9,7 +9,7 @@ import org.springframework.web.reactive.config.EnableWebFlux;
 @SpringBootApplication
 @EnableWebFlux
 @EnableR2dbcRepositories
-@ComponentScan(basePackages = {"com.example.product.application.configuration"})
+@ComponentScan(basePackages = {"com.example.product.application.*"})
 public class ProductApplication {
 
     static void main(String[] args) {

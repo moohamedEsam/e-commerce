@@ -36,6 +36,7 @@ dependencies {
     runtimeOnly(libs.postgres)
     runtimeOnly(libs.r2dbc.postgres)
     annotationProcessor(libs.lombok)
+    annotationProcessor(libs.mapstruct.processor)
     testImplementation(libs.bundles.spring.test)
     testRuntimeOnly(libs.spring.junit.platform.launcher)
 }

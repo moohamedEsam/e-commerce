@@ -11,7 +11,7 @@ reactor = "3.7.11"
 junit-jupiter = "5.11.3"
 junit-platform = "1.11.3"
 mockito = "5.20.0"
-mapstruct = "1.6.3"
+mapstruct = "1.6.0"
 
 [libraries]
 spring-boot-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
@@ -43,11 +43,11 @@ spring-junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter"}
 junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit-jupiter" }
 mockito = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
 mapstruct = { module = "org.mapstruct:mapstruct", version.ref = "mapstruct" }
+mapstruct-processor = { module = "org.mapstruct:mapstruct-processor", version.ref = "mapstruct" }
 
 [plugins]
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
 spring-dep-mgmt = { id = "io.spring.dependency-management", version.ref = "spring-dep-mgmt" }
-
 [bundles]
 spring-test = ["spring-boot-test", "reactor-test", "assertj-core", "spring-junit-jupiter"]
 domain-test = ["junit-jupiter", "mockito", "assertj-core", "reactor-test"]
