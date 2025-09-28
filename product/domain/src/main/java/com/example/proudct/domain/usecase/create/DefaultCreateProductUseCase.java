@@ -6,17 +6,15 @@ import com.example.proudct.domain.repository.ProductRepository;
 import reactor.core.publisher.Mono;
 
 @UseCase
-public class DefaultCreateProductUseCase implements CreateProductUseCase {
-    private final ProductRepository productRepository;
-
-    public DefaultCreateProductUseCase(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
+public record DefaultCreateProductUseCase(ProductRepository productRepository) implements CreateProductUseCase {
 
 
     @Override
-    public Mono<String> execute(Product product) {
-        productRepository.save(product);
-        return Mono.just(product.getId());
+    public Mono<Product> execute(Product product) {
+        return productRepository
+                .findByName(product.getName())
+                .flatMap(_ -> Mono.<Product>error(new RuntimeException("Product already exists")))
+                .switchIfEmpty(Mono.defer(() -> productRepository.save(product)));
+
     }
 }

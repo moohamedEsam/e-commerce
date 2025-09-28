@@ -5,5 +5,5 @@ import reactor.core.publisher.Mono;
 
 @FunctionalInterface
 public interface CreateProductUseCase {
-    Mono<String> execute(Product product);
+    Mono<Product> execute(Product product);
 }

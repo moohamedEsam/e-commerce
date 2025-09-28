@@ -16,6 +16,7 @@ java {
 }
 
 dependencies {
+    implementation(project(":shared"))
     implementation(libs.ulid)
     implementation(libs.reactor)
     compileOnly(libs.lombok)

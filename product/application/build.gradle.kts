@@ -30,6 +30,7 @@ dependencies {
     implementation(libs.flyway.postgres)
     implementation(libs.spring.jdbc)
     implementation(libs.ulid)
+    implementation(libs.mapstruct)
     compileOnly(libs.lombok)
     developmentOnly(libs.spring.boot.devtools)
     runtimeOnly(libs.postgres)

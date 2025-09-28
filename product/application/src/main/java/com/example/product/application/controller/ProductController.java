@@ -18,7 +18,7 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public Mono<Result<String>> create() {
+    public Mono<Result<Product>> create() {
         return createProductUseCase.execute(Product.empty())
                 .map(Result::success)
                 .onErrorResume(ex -> Mono.just(Result.failure(ex)));

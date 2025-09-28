@@ -4,7 +4,6 @@ import com.github.f4b6a3.ulid.UlidCreator;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Data
 public class Product {
@@ -12,7 +11,6 @@ public class Product {
     String description;
     BigDecimal price;
     String categoryId;
-    List<String> images;
     String id = UlidCreator.getUlid().toString();
 
     public static Product empty() {
