@@ -1,6 +1,7 @@
 package com.example.product.application.repository;
 
 import com.example.product.application.mapper.ProductMapper;
+import com.example.proudct.domain.event.ProductEventPublisher;
 import com.example.proudct.domain.model.Product;
 import com.example.proudct.domain.repository.ProductRepository;
 import com.example.proudct.domain.usecase.create.CreateProductUseCase;
@@ -23,6 +24,9 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class CreateProductUseCaseDbTestCase {
     @Autowired
     PostgresProductRepository postgresProductRepository;
+    ProductEventPublisher productEventPublisher = productId -> {
+        System.out.println("Product created: " + productId);
+    };
     ProductRepository productRepository;
 
     CreateProductUseCase createProductUseCase;
@@ -32,7 +36,7 @@ class CreateProductUseCaseDbTestCase {
     void setup() {
         var mapper = Mappers.getMapper(ProductMapper.class);
         productRepository = new ProductRepositoryImpl(postgresProductRepository, mapper);
-        createProductUseCase = new DefaultCreateProductUseCase(productRepository);
+        createProductUseCase = new DefaultCreateProductUseCase(productRepository, productEventPublisher);
     }
 
     @Test

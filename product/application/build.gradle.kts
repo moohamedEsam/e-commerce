@@ -26,6 +26,7 @@ dependencies {
     implementation(libs.spring.boot.data.redis.reactive)
     implementation(libs.spring.boot.validation)
     implementation(libs.spring.boot.webflux)
+    implementation(libs.spring.boot.rabbitmq)
     implementation(libs.flyway.core)
     implementation(libs.flyway.postgres)
     implementation(libs.spring.jdbc)

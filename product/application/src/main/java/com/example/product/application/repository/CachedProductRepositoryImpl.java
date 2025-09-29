@@ -34,14 +34,15 @@ public class CachedProductRepositoryImpl extends ProductRepositoryImpl {
     @Override
     public Mono<Product> save(Product product) {
         return super.save(product)
-                .doOnSuccess(x -> redisTemplate.opsForHash()
-                        .put(PRODUCT_HASH_KEY, x.getId(), productMapper.fromProduct(x)));
+                .flatMap(x -> redisTemplate.opsForHash()
+                        .put(PRODUCT_HASH_KEY, x.getId(), productMapper.fromProduct(x))
+                        .thenReturn(x));
 
     }
 
     @Override
     public Mono<Void> deleteById(String id) {
         return super.deleteById(id)
-                .doOnSuccess(x -> redisTemplate.opsForHash().delete(PRODUCT_HASH_KEY));
+                .flatMap(_ -> redisTemplate.opsForHash().delete(PRODUCT_HASH_KEY).then());
     }
 }

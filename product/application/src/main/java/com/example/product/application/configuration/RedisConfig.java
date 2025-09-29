@@ -18,6 +18,8 @@ public class RedisConfig {
         RedisSerializationContext context =
                 RedisSerializationContext.newSerializationContext(new StringRedisSerializer())
                         .value(new GenericJackson2JsonRedisSerializer())
+                        .hashKey(new StringRedisSerializer())
+                        .hashValue(new GenericJackson2JsonRedisSerializer())
                         .build();
 
         return new ReactiveRedisTemplate<>(factory, context);
